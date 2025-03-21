@@ -39,6 +39,7 @@
         -> used to configure our own custome editors
     10. browserlistrc
         -> it shows all supported browsers of our project.
+        
 
 
 
