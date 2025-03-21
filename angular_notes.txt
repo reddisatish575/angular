@@ -39,6 +39,39 @@
         -> used to configure our own custome editors
     10. browserlistrc
         -> it shows all supported browsers of our project.
+    11. test.ts
+        -> used by karma.conf.js file 
+        -> used to load the all spec files recursevly and give to the kar,a.conf.js
+    12. styles.scss
+        -> global css file
+    13. polyfills.ts
+        -> we will write the browser supporting code of our project
+        -> used to make sure our code has backward compatibilitiy with older version browsers.
+    14. main.ts
+        -> entrypoint of our project.
+
+-> Introdcution to mono-repo
+    -> create and maintain multiple apps in same repo
+    -> use libraries within the project
+    -> deploy multiple app/libs from same repo
+    -> easy to share the code within the project 
+-> app module is default root module
+    -> @NgModule
+        -> it gives what are the libraries, components are using to the compiler.
+        -> Every module need to imported in imports array
+        -> every component, directive and pipes are need to delcare in 
+            the declarations array.
+-> Directives
+    -> Directives are use to change the behaviour and appearancee of DOM element
+    -> Directives can implement all lifecycle hooks
+    -> Directives can not have template.
+-> types of Directives
+    -> 1. Structural directives 
+    -> 2. Attribute directives
+-> Built-in Directives
+    -> *ngIf, *ngFor, *ngSwitch, ngStyle, ngClass
+    
+        
         
 
 
