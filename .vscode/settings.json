@@ -1,0 +1,8 @@
+{
+    "editor.inlineSuggest.suppressSuggestions": false,
+    "editor.acceptSuggestionOnEnter": "on",
+    "editor.inlineSuggest.edits.renderSideBySide": "never",
+    "editor.suggest.showWords": true,
+    "editor.suggest.showVariables": true,
+    "editor.suggestOnTriggerCharacters": true
+}
