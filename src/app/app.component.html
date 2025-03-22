@@ -1,2 +1,6 @@
 
-<app-rooms></app-rooms>
+<div [ngSwitch]="roleType">
+    <div *ngSwitchCase="'User'">You Don't have permissions to view the resources</div>
+    <div *ngSwitchCase="'Admin'"><app-rooms></app-rooms>
+    </div>
+</div>

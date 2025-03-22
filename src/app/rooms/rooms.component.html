@@ -1,8 +1,41 @@
-<h1>welcome to {{hotelName}}</h1>
+<h1 [ngStyle]="{'color': numberOfRooms>0 ? 'blue' : 'yellow'}">welcome to {{hotelName}}</h1>
 
-<div *ngIf="hideRooms">
+<div *ngIf="hideRooms" [ngStyle]="{'color': 'green'}">
     Number of Rooms:
 <div [innerText]="numberOfRooms"></div>
+</div>
+
+<div>{{roomsList | slice : 0:2 | json }}</div>
+
+<div *ngIf="rooms.availableRooms>0">Rooms List
+
+    <table [ngStyle]="{'width':'100%'}">
+        <tr>
+            <th>S No</th>
+            <th>Even/Odd</th>
+            <th>Room Type</th>
+            <th>Room Number</th>
+            <th>Amenities</th>
+            <th>Price</th>
+            <th>Photos</th>
+            <th>Checkin Time</th>
+            <th>Checkout Time</th>
+        </tr>
+        <tr [ngClass]="e ? 'even' : 'odd' "
+         *ngFor="let room of roomsList | slice : 0:4;let e = even;let o = odd,let i=index">
+            <td>{{i | percent}}</td>
+            <td>{{e ? "Even" : "Odd"}}</td>
+            <td>{{ room.roomNumber }}</td>
+            <td>{{ room.roomType | titlecase}}</td>
+            <td>{{ room.amenities }}</td>
+            <td>{{ room.price | currency : 'INR'}}</td>
+            <td>
+                <img [src]="room.photos" alt="{{ room.roomType }}" width="100">
+            </td>
+            <td>{{ room.checkInTime | date:'dd-MM-yyyy' }}</td>
+            <td>{{ room.checkOutTime | date:'dd-MM-yyyy' }}</td>
+        </tr>
+    </table>
 </div>
 
 <button (click)="toggle()">{{showRooms}}</button>

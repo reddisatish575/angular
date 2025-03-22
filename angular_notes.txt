@@ -66,10 +66,18 @@
     -> Directives can implement all lifecycle hooks
     -> Directives can not have template.
 -> types of Directives
-    -> 1. Structural directives 
-    -> 2. Attribute directives
+    -> 1. Structural directives (Having *)
+        -> can add/remove DOM elements
+    -> 2. Attribute directives ([] syntax)
+        -> can modify the DOM
+        -> can't add/remove DOM elements
 -> Built-in Directives
     -> *ngIf, *ngFor, *ngSwitch, ngStyle, ngClass
+-> pipes 
+    -> pipes are used to data transformation (changing).
+    -> pipes dont' change the actual object, it changes view only
+-> Built-in pipes   
+    -> Date, UpperCase, LowercAse, Cureency, Decimal, Percent, Json, Slice, Async
     
         
         
