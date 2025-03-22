@@ -61,6 +61,7 @@
         -> Every module need to imported in imports array
         -> every component, directive and pipes are need to delcare in 
             the declarations array.
+-> Inrterpolation {{}}, property binding [], event binding ().
 -> Directives
     -> Directives are use to change the behaviour and appearancee of DOM element
     -> Directives can implement all lifecycle hooks
@@ -78,12 +79,82 @@
     -> pipes dont' change the actual object, it changes view only
 -> Built-in pipes   
     -> Date, UpperCase, LowercAse, Cureency, Decimal, Percent, Json, Slice, Async
-    
-        
-        
+-> constructor
+    -> constructor will be called before ngOnInit.
+    -> constructor is used to inject some services but should not have any blocking code..
+    -> when component is instantiate , constructor will be called.
+-> Lifecycle hgooks 
+    -> component instance has a lifecycle hooks which can help you to hook into different events on components
+    -> lifecycle ends when component is destroyed 
+-> we have 8 lifecycle hooks 
+    1. ngOnChanges
+        -> you cannot apply this hook only when your component have input and output property.
+        -> it will called whenever event called in entire application irrespective of where it is implemented.
+        -> when it is active, it will listen any event throughout your application.
+        -> when you want modify the property after getting input values then we will use.
+        -> Only works when we have input property
+        -> try to avoid as much as possible
+    2. ngOninit
+    3. ngDoCheck 
+        -> never use docheck and ngOnChanges in same component, both do same thing
+        -> it will called whenever event called in entire application irrespective of where it is implemented.
+        -> when it is active, it will listen any event throughout your application.
+        -> before using this docheck go through stackoverflow.
+    4 ngAfterContentInit
+    5. ngAfterContentChecked
+    6. ngAfterViewInit
+        -> scenario: you have component and you dont want to make it reusable, don't want to have   
+            input and output properties , sometimes you want to load them in another component and probably
+            assigning some property and call some function or any third party component , we use @ViewChild.
+        ->@ViewChild
+            -> can access the Viewchild component after nt ngAfterViewInit not ngOninit.
+            -> if we use {static:true}, then we can access the ViewChild component after ngOninit.
+            -> when we use {static:true}, let's our headercompoent is instantiated in rooms component,
+                when instantiated the ngOninit lifecycle chook will be called in headercompoent and we try to getting the 
+                data in headercompoent without completing it's functions. So we may don't get the data in ngoninit of rooms 
+                component. data issues will be raised.
+            -> so we access the data after ngAfterViewInit, because the view of the component is ready.
+        -> ExpressionChangedAfterItHasBeenCheckedError: Expression has changed after it was checked. Previous value: ''. Current value:
+            -> In dev mode, the angular runs change Detection twice, so we will get this eeror.
+            -> if we get this error in production then it needs to be solved, if it is in dev mode it is totally fine.
+    7. ngAfterViewChecked
+        -> rarely used hook, we can use viewinit.
+        -> it will called whenever event called in entire application irrespective of where it is implemented.
+        -> when it is active, it will listen any event throughout your application.
+        -> before using this ngAfterViewChecked go through stackoverflow.
+    8. ngOnDestroy
 
-
-
+-> component communication
+    -> The scenario where two or more components needs to interact.
+    -> multiple ways to achiece this.
+        -> Using @Input and @Output
+            -> @Input
+                -> @Input only knows how to render the data but not from where to render the data.
+                -> this relationship is also called parent-child relationship
+                -> parent is smart component and child is dumb component.
+                -> property binding syntax used `[]`
+            -> @Output
+                -> used to send the data from the child to parent.
+                -> event binding syntax used `()`
+        -> Using @ViewChil and @ContentChild
+        -> Using services
+-> Change Detection 
+    -> onPush
+        -> when DOM is changing the Input property value must be immutable then only we can add elements
+-> ng-template
+    -> it is a tag which never render anything, but it can help us to render other components.
+    -> used to dynamically load the components.
+    -> <ng-template #user></ng-template> , where user is template reference
+    ISSUE :: if we have inner viewchilds , in first time properties are not updating. 
+-> element reference
+    -> <div #name></div>
+    -> by using this we can add out content to html element.
+-> @ViewChildren
+    -> In case of ViewChild, if we use multiple same header tags in rooms component, when we update the 
+        headerTitle in header,only first instantiate will be updated, other will be with old headerTitle.
+    -> instead of viewChild, viewChildren will be helpful.
+    -> dirty means nothing has been changed.
+    -> it jas first, last,length other properties.
 
 
     
