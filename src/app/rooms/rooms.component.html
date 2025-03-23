@@ -5,11 +5,12 @@
 <div *ngIf="hideRooms" [ngStyle]="{'color': 'green'}">
     Number of Rooms:
 <div [innerText]="numberOfRooms"></div>
+<app-rooms-list [rooms]="roomsList" (selectedRoom)="fetchSelectedRoom($event)" [title]="'Rooms Title'"></app-rooms-list>
+
 </div>
+<button (click)="toggle()">{{showRooms}}</button>
 <div>{{selectedRoom | json }}</div>
 <div><button (click)="addRoom()">Add Room</button></div>
 <div *ngIf="rooms.availableRooms>0">Rooms List
-<app-rooms-list [rooms]="roomsList" (selectedRoom)="fetchSelectedRoom($event)" [title]="'Rooms Title'"></app-rooms-list>
 </div>
 
-<button (click)="toggle()">{{showRooms}}</button>

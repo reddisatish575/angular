@@ -101,7 +101,21 @@
         -> when it is active, it will listen any event throughout your application.
         -> before using this docheck go through stackoverflow.
     4 ngAfterContentInit
+        -> Content projection
+            -> one of important topic, if you want header on the top, footer on the bottom and side bar on left side,
+                we can order the components which one load first.
+            -> ng-content
+                -> used to display the content whatever is written
+                -> it follows order of execution of code.
+            -> @ContentChild
+                -> used to acces the data of ng-content components
+                -> we can access the properties after ngAfterContentInit
+                -> there is no static property , so you can only acces after ngAfterContentInit.
     5. ngAfterContentChecked
+         -> rarely used hook, we can use viewinit.
+        -> it will called whenever event called in entire application irrespective of where it is implemented.
+        -> when it is active, it will listen any event throughout your application.
+        -> before using this ngAfterContentChecked go through stackoverflow.
     6. ngAfterViewInit
         -> scenario: you have component and you dont want to make it reusable, don't want to have   
             input and output properties , sometimes you want to load them in another component and probably
@@ -123,7 +137,10 @@
         -> when it is active, it will listen any event throughout your application.
         -> before using this ngAfterViewChecked go through stackoverflow.
     8. ngOnDestroy
-
+        -> whenever something is created , you need to destoryed.
+        -> whenever the component is removed from the DOM, this hook will called.
+        -> it will be useful when we need to free the memory, unsubscribing the data,resets some data, 
+        if we need to clear the cache and loacalstorage ...
 -> component communication
     -> The scenario where two or more components needs to interact.
     -> multiple ways to achiece this.
@@ -155,6 +172,49 @@
     -> instead of viewChild, viewChildren will be helpful.
     -> dirty means nothing has been changed.
     -> it jas first, last,length other properties.
+
+-> Dependency Injection
+    -> dependencies are service or objects needed by classes to perform some function.
+    -> it's a design pattern
+    -> angular has builtin dependency injection support.
+    -> DI Providers
+        -> Class based providers 
+            -> create and consuming services
+                -> ng g s <service-name>
+                -> all reusable code will be written in services    
+                -> bussiness logic will be written 
+                -> sharing data between multiple components and within the app
+            -> providers types
+                -> root
+                    -> whenever we inject services, the angular needs to figure out where this service is provided.
+                    -> In older angular < 6 , we used to register the services in providers arrat of the app-root module.
+                        Now providedIn : root in the service makes it register in the app-root module.
+                    -> providedIn : root gives you single instance of the service 
+                    -> if we want different instance for different components, then we need to use providers : [RoomsService]
+                        in @Component decorator
+                    -> most of the cases , singletone instance is enough
+                    -> If we inject service in rooms component, then the algo checks the service provider is 
+                        availabe in @Component decorator itslef, if not present then it will goes to parent and checks until it's app-root module.
+                        if not finds any provider then goes to main.ts checks it is configured by platformmodule, if not finds then it throws
+                        null injector error.
+                -> any 
+                -> platform
+                    -> Internally used by router service
+            -> Resolution modifiers
+            -> self
+                -> @Self() is used to check the service is provided in that component, if doesn't check on further parents.
+            -> skipSelf
+                -> @SkipSelf() is used to check the service is provided in further parents, if doesn't check on its component
+            -> host
+                -> 
+            -> optional
+        -> Value providers
+            -> we can pass an object as service 
+            -> make habit of declaring const as capital letter
+            -> in case importing enviroment file wherver we need, we create service through injectiontoken and
+                create a value provider. we will register in app module.
+        -> factory
+            -> loacalstorage, window, sessionstorage etc,. all are used factory and injectiontoken.
 
 
     
