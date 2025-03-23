@@ -20,7 +20,7 @@ constructor(@Inject(localStorageToken) private lst : any,
   ngOnInit(): void {
     this.lst.setItem("name","Satish");
     this.sst.setItem("timeOut",40);
-    console.log("uix window :::",this.wt);
+    // console.log("uix window :::",this.wt);
   }
 
 

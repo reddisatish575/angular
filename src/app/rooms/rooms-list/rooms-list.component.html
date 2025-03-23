@@ -3,13 +3,14 @@
     <tr>
         <th>S No</th>
         <th>Even/Odd</th>
-        <th>Room Type</th>
         <th>Room Number</th>
+        <th>Room Type</th>
         <th>Amenities</th>
         <th>Price</th>
         <th>Photos</th>
         <th>Checkin Time</th>
         <th>Checkout Time</th>
+        <th>Rating</th>
         <th>Select</th>
     </tr>
     <tr [ngClass]="e ? 'even' : 'odd' "
@@ -23,8 +24,9 @@
         <td>
             <img [src]="room.photos" alt="{{ room.roomType }}" width="100">
         </td>
-        <td>{{ room.checkInTime | date:'dd-MM-yyyy' }}</td>
-        <td>{{ room.checkOutTime | date:'dd-MM-yyyy' }}</td>
+        <td>{{ room.checkinTime | date:'dd-MM-yyyy' }}</td>
+        <td>{{ room.checkoutTime | date:'dd-MM-yyyy' }}</td>
+        <td>{{room.rating | number }}</td>
         <td><button (click)="selectRoom(room)">Submit</button></td>
     </tr>
 </table>

@@ -11,7 +11,7 @@ export class EmployeeComponent implements OnInit {
 
   empName : string = "Albert";
   constructor(private roomsService : RoomsService) {
-    console.log("uix rooms service EmployeeComponent :::")
+    // console.log("uix rooms service EmployeeComponent :::")
    }
 
   ngOnInit(): void {

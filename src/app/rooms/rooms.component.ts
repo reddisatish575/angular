@@ -2,6 +2,7 @@ import { AfterViewChecked, AfterViewInit, Component, DoCheck, OnChanges, OnInit,
 import { Room, RoomsList } from './rooms';
 import { HeaderComponent } from '../header/header.component';
 import { RoomsService } from '../services/rooms.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-rooms',
@@ -22,13 +23,38 @@ export class RoomsComponent implements OnInit , DoCheck, AfterViewInit, AfterVie
 
   roomsList : RoomsList[]=[];
   selectedRoom! : RoomsList;
+
+  stream = new Observable<string>((observer) => {
+    observer.next('user2');
+    observer.next('user1');
+    observer.next('user5');
+    observer.complete();
+    // observer.error('error')
+  });
   
   // @ViewChild(HeaderComponent) headerComp! : HeaderComponent ;
   @ViewChildren(HeaderComponent) headerChildrenComponent!: QueryList<HeaderComponent>;
 
   constructor(private roomsService : RoomsService) { }
   ngOnInit(): void {
-    this.roomsList = this.roomsService.getRooms();
+
+    this.roomsService.getPhotos().subscribe((data) => {
+      console.log("uix data ::: ",data)
+    })
+
+  //   this.stream.subscribe({
+  //     next : (value) => console.log("uix value ::: ",value),
+  //     complete : () => console.log("uix complete"),
+  //     error : (err) => console.log("uix error :: ",err),
+  //   });
+
+  //   this.stream.subscribe((data) => {
+  //     console.log("uix rooms ngoninit data ::: ",data);
+  //   // console.log("uix rooms ngoninit stream ::: ",this.stream);
+  // });
+    this.roomsService.getRooms().subscribe((res) => {
+      this.roomsList = res;
+    })
     // console.log("uix rooms ngOninit headerComp ::: ",this.headerComp);
   }
  
@@ -71,17 +97,57 @@ export class RoomsComponent implements OnInit , DoCheck, AfterViewInit, AfterVie
       this.selectedRoom = e;
   }
   addRoom(){
-    const newRoom : RoomsList = {
+    const newRoom : any = {
       roomType: "Penthouse",
-      roomNumber: 606,
+      // roomNumber: '606',
       amenities: "AC, Wifi, Private Pool",
       price: 25000,
       photos: "https://source.unsplash.com/400x300/?hotel,penthouse",
-      checkInTime: new Date('10-Jun-2022'),
-      checkOutTime: new Date('30-Jun-2022')
+      checkinTime: new Date('10-Jun-2022'),
+      checkoutTime: new Date('30-Jun-2022'),
+      rating : 4.3
     }
 
-    this.roomsList.push(newRoom);
+    this.roomsService.addRooms(newRoom).subscribe((data) => {
+      this.roomsList.push(newRoom);
+    })
+
     // this.roomsList = [...this.roomsList,newRoom];
   }
+
+  editRoom(){
+    const newRoom : any = {
+      roomType: "PG",
+      roomNumber: '3',
+      amenities: "Nothing",
+      price: 8000,
+      photos: "https://source.unsplash.com/400x300/?hotel,penthouse",
+      checkinTime: new Date('10-Jun-2022'),
+      checkoutTime: new Date('30-Jun-2022'),
+      rating : 4.3
+    }
+
+    this.roomsService.editRoom(newRoom).subscribe((data) => {
+      this.roomsList = data
+    })
+
+  }
+deleteRoom(){
+    const newRoom : any = {
+      roomType: "PG",
+      roomNumber: '3',
+      amenities: "Nothing",
+      price: 8000,
+      photos: "https://source.unsplash.com/400x300/?hotel,penthouse",
+      checkinTime: new Date('10-Jun-2022'),
+      checkoutTime: new Date('30-Jun-2022'),
+      rating : 4.3
+    }
+
+    this.roomsService.deleteRoom(newRoom).subscribe((data) => {
+      this.roomsList = data
+    })
+
+  }
+
 }

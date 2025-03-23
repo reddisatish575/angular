@@ -4,5 +4,6 @@
     "editor.inlineSuggest.edits.renderSideBySide": "never",
     "editor.suggest.showWords": true,
     "editor.suggest.showVariables": true,
-    "editor.suggestOnTriggerCharacters": true
+    "editor.suggestOnTriggerCharacters": true,
+    "editor.quickSuggestionsDelay": 1
 }

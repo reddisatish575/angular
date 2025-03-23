@@ -215,7 +215,48 @@
                 create a value provider. we will register in app module.
         -> factory
             -> loacalstorage, window, sessionstorage etc,. all are used factory and injectiontoken.
-
+-> Angular HHttp and observables
+    -> Introdcution
+        -> In enterprise apps, you need to interact with API's
+        -> you may be familiar with with ajax,fetch
+        -> httpclient is service provided by angular to interact with API's
+        -> httpclient Internally uses rxjs.
+    -> Setting up httpclient
+        -> we need to import httpclientmodule
+        -> we need to inject the httpclient service
+    -> using httpclinet service
+    -> rxjs, observables and streams
+        -> rxjs use concept of whatever the data we getting is stream of data
+        -> netflix, hotstar, amazon prime, youtube are straming services.
+        -> if you want that stream , you must subscribe to it, similar concept is used in rxjs.
+        -> we have two type of architectures
+            1. pull based architecture 
+                -> if we want add the newdata to the data, you need to get the data first 
+                    then you need to add the newdata and call the get data again to display.
+                -> getData ==> addDate ==> getData
+            2. push based architecture
+                -> if we want to add the newdata to the data , we can add the newdata directly to the data,
+                    no need to call the get data again
+                -> getData ==> continous stream of data ==> addData
+        -> Rxjs internally uses push based architecture.
+        -> RxJs is an library for writing reactive propgramming.
+        -> observables are stream of data which we can subscribe.
+        -> we can create observables by using both http and rxjs.
+            ->  stream = new Observable(observer => { observer.next('user2'); });
+            -> if we want the data in the stream, you need to subscribe to it.
+            -> for every next, the subscribtion calls everytime, so it is simply continous stream of data.
+        -> request api is more powerful than http api. it has more features
+    -> http methods
+        -> get, post, put, delete
+    -> rxjs operators 
+        -> we have more than 100 operators.
+        -> why we need rxjs operators ? 
+            -> RxJs gives stream of data and that stream of data cannot be modified after subscribe.
+        -> ShareReplay
+        -> CatchError
+        -> Map Operators 
+    -> http interceptors 
+    -> APP_INITIALIZERS
 
     
    
