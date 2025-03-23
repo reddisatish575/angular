@@ -1,11 +1,12 @@
 <!-- <h1 [ngStyle]="{'color': numberOfRooms>0 ? 'blue' : 'yellow'}">welcome to {{hotelName}}</h1> -->
+<!-- <app-header></app-header>
+<app-header></app-header> -->
+<!-- {{rooms$ | async | json}} -->
 <app-header></app-header>
-<app-header></app-header>
-<app-header></app-header>
-<div *ngIf="hideRooms" [ngStyle]="{'color': 'green'}">
+<div *ngIf="rooms$ | async as rooms " [ngStyle]="{'color': 'green'}">
     Number of Rooms:
 <div [innerText]="numberOfRooms"></div>
-<app-rooms-list [rooms]="roomsList" (selectedRoom)="fetchSelectedRoom($event)" [title]="'Rooms Title'"></app-rooms-list>
+<app-rooms-list [rooms]="rooms " (selectedRoom)="fetchSelectedRoom($event)" [title]="'Rooms Title'"></app-rooms-list>
 
 </div>
 <button (click)="toggle()">{{showRooms}}</button>

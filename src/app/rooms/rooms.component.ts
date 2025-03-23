@@ -1,15 +1,15 @@
-import { AfterViewChecked, AfterViewInit, Component, DoCheck, OnChanges, OnInit, QueryList, SimpleChanges, ViewChild, ViewChildren } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, Component, DoCheck, OnChanges, OnDestroy, OnInit, QueryList, SimpleChanges, ViewChild, ViewChildren } from '@angular/core';
 import { Room, RoomsList } from './rooms';
 import { HeaderComponent } from '../header/header.component';
 import { RoomsService } from '../services/rooms.service';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-rooms',
   templateUrl: './rooms.component.html',
   styleUrls: ['./rooms.component.scss']
 })
-export class RoomsComponent implements OnInit , DoCheck, AfterViewInit, AfterViewChecked{
+export class RoomsComponent implements OnInit , DoCheck, AfterViewInit, AfterViewChecked, OnDestroy{
 
   hotelName : string = "Taj Hotel";
   numberOfRooms : number = 20;
@@ -35,6 +35,9 @@ export class RoomsComponent implements OnInit , DoCheck, AfterViewInit, AfterVie
   // @ViewChild(HeaderComponent) headerComp! : HeaderComponent ;
   @ViewChildren(HeaderComponent) headerChildrenComponent!: QueryList<HeaderComponent>;
 
+  subs!: Subscription;
+  rooms$ = this.roomsService.getRooms$
+
   constructor(private roomsService : RoomsService) { }
   ngOnInit(): void {
 
@@ -52,12 +55,22 @@ export class RoomsComponent implements OnInit , DoCheck, AfterViewInit, AfterVie
   //     console.log("uix rooms ngoninit data ::: ",data);
   //   // console.log("uix rooms ngoninit stream ::: ",this.stream);
   // });
-    this.roomsService.getRooms().subscribe((res) => {
-      this.roomsList = res;
-    })
+
+    // this.subs = this.roomsService.getRooms$.subscribe((res) => {
+    //   this.roomsList = res;
+    // })
+
     // console.log("uix rooms ngOninit headerComp ::: ",this.headerComp);
   }
  
+ngOnDestroy(): void {
+  //Called once, before the instance is destroyed.
+  //Add 'implements OnDestroy' to the class.
+  if(this.subs){
+    this.subs.unsubscribe();
+  }
+}
+
   ngDoCheck(): void {
     // console.log("uix rooms. DoCheck ::: ");
   }

@@ -10,7 +10,7 @@ import { emit } from 'process';
 })
 export class RoomsListComponent implements OnInit, OnChanges,OnDestroy {
 
-  @Input() rooms : RoomsList[] = [];
+  @Input() rooms : RoomsList[] | null = [];
   @Output() selectedRoom = new EventEmitter<RoomsList>();
   @Input() title :string = "";
   constructor() { }

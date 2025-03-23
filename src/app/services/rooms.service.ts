@@ -2,6 +2,7 @@ import { Inject, Injectable } from '@angular/core';
 import { Room, RoomsList } from '../rooms/rooms';
 import { APP_SERVICE_CONFIG } from '../AppConfig/appconfig.service';
 import { HttpClient, HttpRequest } from '@angular/common/http';
+import { shareReplay } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -61,7 +62,9 @@ export class RoomsService {
   //         rating : 4.9
   //       },]
         
-
+  getRooms$ = this.http.get<RoomsList []>('/api/room').pipe(
+    shareReplay(1)
+  );
 
   constructor(@Inject(APP_SERVICE_CONFIG) private config: any,
                 private http : HttpClient) {

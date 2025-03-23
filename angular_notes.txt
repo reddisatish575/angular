@@ -251,9 +251,23 @@
     -> rxjs operators 
         -> we have more than 100 operators.
         -> why we need rxjs operators ? 
-            -> RxJs gives stream of data and that stream of data cannot be modified after subscribe.
+            -> RxJs gives stream of data and that stream of data cannot be modified after subscribe. 
+            -> the stream can modify inside the `pipe` function.
         -> ShareReplay
+            -> when api's called more than once in single component, we have performance issues. we will cache the request
+                by using this operator , so we can use this data.
+            -> getRooms$ = this.http.get<RoomsList []>('/api/rooms').pipe(shareReplay(1));
+                -> getRoom$ is property
+                -> we will caching the every request of get api `/api/rooms/`.
+        -> Async pipe 
+            -> when we subscribe many streams, we must unsubscribe the streams. if not performance issues will come.
+            -> whenever ngOnDestroy calls, async pipe will aslo unsubscribing that object.
+            -> async pipe can also return null.
+            -> async pipe has to subscribe multiple times, so we can use below line 
+                -> async as rooms
         -> CatchError
+            -> we can handle 404 exceptions by using async
+            -> by using ngrx we can handle.
         -> Map Operators 
     -> http interceptors 
     -> APP_INITIALIZERS
