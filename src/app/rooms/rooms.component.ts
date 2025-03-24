@@ -2,7 +2,7 @@ import { AfterViewChecked, AfterViewInit, Component, DoCheck, OnChanges, OnDestr
 import { Room, RoomsList } from './rooms';
 import { HeaderComponent } from '../header/header.component';
 import { RoomsService } from '../services/rooms.service';
-import { Observable, Subscription } from 'rxjs';
+import { catchError, map, Observable, of, Subject, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-rooms',
@@ -15,7 +15,7 @@ export class RoomsComponent implements OnInit , DoCheck, AfterViewInit, AfterVie
   numberOfRooms : number = 20;
   hideRooms : boolean = true;
   showRooms : string = "Hide Rooms";
-  rooms : Room={
+  roomsss : Room={
     totalRooms :15,
     availableRooms:10,
     bookedRooms:5
@@ -36,13 +36,28 @@ export class RoomsComponent implements OnInit , DoCheck, AfterViewInit, AfterVie
   @ViewChildren(HeaderComponent) headerChildrenComponent!: QueryList<HeaderComponent>;
 
   subs!: Subscription;
-  rooms$ = this.roomsService.getRooms$
+  rooms$ = this.roomsService.getRooms$.pipe(
+    catchError((err) => {
+      console.log("uix error ::: ",err);
+      this.error$.next(err);
+      return of([]);
+    })
+  );
+
+  error$ = new Subject<string>();
+  getError$ = this.error$.asObservable();
+
+  roomsCount$ = this.roomsService.getRooms$.pipe(
+    map((rooms) => rooms.length)
+  )
+
+
 
   constructor(private roomsService : RoomsService) { }
   ngOnInit(): void {
 
     this.roomsService.getPhotos().subscribe((data) => {
-      console.log("uix data ::: ",data)
+      // console.log("uix data ::: ",data)
     })
 
   //   this.stream.subscribe({

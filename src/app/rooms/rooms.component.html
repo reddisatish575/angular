@@ -7,12 +7,13 @@
     Number of Rooms:
 <div [innerText]="numberOfRooms"></div>
 <app-rooms-list [rooms]="rooms " (selectedRoom)="fetchSelectedRoom($event)" [title]="'Rooms Title'"></app-rooms-list>
-
 </div>
 <button (click)="toggle()">{{showRooms}}</button>
 <div>{{selectedRoom | json }}</div>
 <div><button (click)="addRoom()">Add Room</button></div>
-<div *ngIf="rooms.availableRooms>0">Rooms List
+<!-- <div>{{getError$ | async | json }}</div> -->
+<h2>{{roomsCount$| async }}</h2>
+<div *ngIf="roomsss.availableRooms>0">Rooms List
 </div>
 
 <button (click)="editRoom()">Edit Room</button>

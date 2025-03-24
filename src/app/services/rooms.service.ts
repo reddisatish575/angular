@@ -62,7 +62,7 @@ export class RoomsService {
   //         rating : 4.9
   //       },]
         
-  getRooms$ = this.http.get<RoomsList []>('/api/room').pipe(
+  getRooms$ = this.http.get<RoomsList []>('/api/rooms').pipe(
     shareReplay(1)
   );
 

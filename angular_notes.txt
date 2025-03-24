@@ -263,12 +263,23 @@
             -> when we subscribe many streams, we must unsubscribe the streams. if not performance issues will come.
             -> whenever ngOnDestroy calls, async pipe will aslo unsubscribing that object.
             -> async pipe can also return null.
-            -> async pipe has to subscribe multiple times, so we can use below line 
+            -> if we use multiple times then it subscribes multiple times
+            -> async pipe has to subscribe multiple times, so we can use below line
                 -> async as rooms
+            -> use async pipe as much as possible.
         -> CatchError
             -> we can handle 404 exceptions by using async
-            -> by using ngrx we can handle.
+            -> by using ngrx also we can handle.
+            -> we can't modify the data, after we subscribing, but we can do it by using pipe 
+                -> we can display the particular error message by using pipe operator.
+            -> we can also display the by using subject, it uses both Observable and observer 
+            -> subject is base class for different streams which we get. Internally angular also subject at lot of places.
+                -> error$ = new Subject<string>(); , used to create an subject.
+                -> getError$ = this.error$.asObservable(); , make it as active stream to listen the data.
+                -> error$.next(err), push the error to the stream.
+                -> Don't use this in component. do it in service. by using component interaction through services.
         -> Map Operators 
+            -> we can modify the stream by using the map operator by subscribing to the same stream.
     -> http interceptors 
     -> APP_INITIALIZERS
 
