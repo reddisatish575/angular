@@ -36,9 +36,10 @@ export class RoomsComponent implements OnInit , DoCheck, AfterViewInit, AfterVie
   @ViewChildren(HeaderComponent) headerChildrenComponent!: QueryList<HeaderComponent>;
 
   subs!: Subscription;
+
   rooms$ = this.roomsService.getRooms$.pipe(
     catchError((err) => {
-      console.log("uix error ::: ",err);
+      // console.log("uix error ::: ",err);
       this.error$.next(err);
       return of([]);
     })

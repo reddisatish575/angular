@@ -215,7 +215,7 @@
                 create a value provider. we will register in app module.
         -> factory
             -> loacalstorage, window, sessionstorage etc,. all are used factory and injectiontoken.
--> Angular HHttp and observables
+-> Angular Http and observables
     -> Introdcution
         -> In enterprise apps, you need to interact with API's
         -> you may be familiar with with ajax,fetch
@@ -280,8 +280,47 @@
                 -> Don't use this in component. do it in service. by using component interaction through services.
         -> Map Operators 
             -> we can modify the stream by using the map operator by subscribing to the same stream.
-    -> http interceptors 
-    -> APP_INITIALIZERS
+
+-> Http Interceptors and APP_INITIALIZERS
+    -> Allow us to intercept request.
+    -> we can change the data and headers
+    -> APP_INITIALIZERS allows you to inject function as application startup.
+    -> when we add headers to every request, it's like duplicating code, so to resolve this issue, there is 
+        concept called interceptors.
+    -> when we send request from client to server and get response from server, there is 
+        mediator , it will listen everything is called interceptor.
+    -> we can common headers inside the interceptor, if we want to add date and timestamp to each and every request we can do that,
+        we can handle the token expire case.
+    -> to generate interceptor
+        -> ng g interceptor <name>
+    -> http interceptor can modify our request and response both 
+    -> this line send request to our server
+        -> return next.handle(request);
+    -> HTTP_INTERCEPTORS is injection token.
+    -> angular has some interceptors , thar are executed sequentially, follows FIFO principle.
+    -> when we add extra interceptors in app.module then it will be added to the queue.
+    -> you cannot modify the request directly, you need to clone it and send the new request instead of old one.
+    -> in routing and forms we can majorly modify the response.
+    -> APP_INITIALIZER is a service, which is used to load the data before our app gets initialised.
+    -> when we some configuration and need to load that configuration before our app is initialised and save that data into service,
+        then we can use it.
+    -> APP_INITIALIZER can plugin our service and call that service, before our app is initialised.
+        we can do anything whatever we want into that service, we can load the config file.
+
+-> Angular Router 
+    
 
     
    
+
+
+
+
+
+
+
+
+
+
+
+

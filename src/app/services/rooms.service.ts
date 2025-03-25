@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import { Room, RoomsList } from '../rooms/rooms';
 import { APP_SERVICE_CONFIG } from '../AppConfig/appconfig.service';
-import { HttpClient, HttpRequest } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { shareReplay } from 'rxjs';
 
 @Injectable({
@@ -61,8 +61,10 @@ export class RoomsService {
   //         checkOutTime: new Date('20-May-2022'),
   //         rating : 4.9
   //       },]
-        
-  getRooms$ = this.http.get<RoomsList []>('/api/rooms').pipe(
+  // headers = new HttpHeaders({ token : 'njdfkvdkjfnvikfnvkd' }) 
+  getRooms$ = this.http.get<RoomsList []>('/api/rooms'
+    // ,{headers : this.headers}
+).pipe(
     shareReplay(1)
   );
 
@@ -78,7 +80,9 @@ export class RoomsService {
   }
 
   addRooms(room: RoomsList) {
-    return this.http.post<RoomsList[]>('/api/rooms',room)
+    return this.http.post<RoomsList[]>('/api/rooms',room
+      // , {headers : this.headers.append('supervisor','123234')}
+    )
   }
   editRoom(room : RoomsList) {
     return this.http.put<RoomsList[]>(`/api/rooms/${room.roomNumber}`,room)
