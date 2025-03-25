@@ -308,6 +308,46 @@
         we can do anything whatever we want into that service, we can load the config file.
 
 -> Angular Router 
+    -> Introdcution
+        -> provides the functionality to add Routes.
+        -> developers can configure all the routes at front-end 
+        -> provides SPA functionality
+            -> you can navigate to any url but no need to send request to the server.
+        -> Feature to add nested routes.
+    -> Setup Router 
+        -> Import Routermodule
+        -> forRoot method allows us to add multiple route config
+            -> it it singleton instance , you should not forRoot multiple times.
+        -> to configure route , you need two things
+            -> 1. path : it is string value, whatever you added that will be added to the parent route
+            -> 2. component : when we go that url, which component i need to load.
+        -> <router-outlet></router-outlet>
+            -> it will give the content in that single commponent only.
+            -> what ever the path matches, it loads that respective component.
+            -> 
+        -> default route 
+            -> { path : '',redirectTo : '/rooms' , pathMatch : 'full' }
+            -> we can also regexp in case of path.
+        -> <a [href]="'rooms'">Rooms</a>
+            -> don't use href, because it loads the entire page. angular is SPA not MPA 
+            -> so use [routerLink] instaead of href 
+        -> <a [routerLink]="'rooms'">Rooms</a>
+            -> it doesn't loads the entire page when routing.
+        -> ng add @angular/material
+            -> used to add angular material.
+        -> ng generate @angular/material:navigation <component-name>
+            -> used to create navigation component.
+        -> dynamic route 
+            -> room/:id is example of dynamic route.
+        -> wild card route 
+            -> { path : '**', component : NotfoundComponent }
+            -> incase of page not found, we can use this wildcard route.
+    -> Using ActivatedRoute service 
+    -> Using Router service 
+    -> Feature Module and Routing 
+    -> Nested Routing and Child Routes 
+    -> Lazy Loading
+    -> Route Guards.
     
 
     
