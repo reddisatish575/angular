@@ -359,12 +359,52 @@
             -> let params = this.router.snapshot.params;
                 -> it doesn't listen to the live changes., so we can avoid this.
         -> if we have multiple values , then there will problem with params. so we must use paramMap.
-            -> 
+            -> id$ = this.router.paramMap.pipe( map((params) => params.get('roomId')));
     -> Using Router service 
     -> Feature Module and Routing 
     -> Nested Routing and Child Routes 
     -> Lazy Loading
     -> Route Guards.
+
+-> we have two types of forms
+    -> Template driven forms 
+    -> reactive forms (more preferble)
+-> Template Driven Forms
+    -> setting up template driven forms
+        -> Import FromsModule to module 
+        -> In TDF, we can create forms using HTML tags.
+        -> Good for dev's who likes to have more control using HTML.
+        -> Use ngModel for 2 way data binding.
+    -> validating forms
+        -> we can use HTML5 validation to validate forms 
+        -> use disabled property to avoid submitting the blank forms 
+        -> use #templateVariable to access the state of Forms.
+        -> if we want to get the status of the form , we need to get an instance of the form.
+            -> #roomsForm = "ngForm" , by using this we can create & use an instance.
+            -> above formreference has many properties.
+                -> valid
+                    -> property will be true, if form has all required fields and no validation errors
+                -> invalid
+                    -> opposite of valid property
+                -> dirty 
+                    -> 
+                -> pristine
+                    -> 
+                -> value  
+                    -> 
+                -> [disabled]   ----> used to disable the submit button
+                -> minlength and maxlength ---> string values
+                -> min and max property
+                -> email
+                -> pattern : we can provide regular experession
+        -> ** use validation both sides, frontend and backend, if someone hit the api through external 
+            app, then backend code may be broken, so use both sides validations.
+    -> submit and reset froms 
+    -> custom pipe demo with forms
+    -> writing a custom directive
+    -> writing custom validator.
+
+
     
 
     

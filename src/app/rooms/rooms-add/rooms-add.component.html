@@ -1,0 +1,38 @@
+<h3>Rooms Valid :{{roomsForm.valid | json }} </h3>
+<h3>Rooms dirty :{{roomsForm.dirty | json }} </h3>
+<h3>Rooms pristine :{{roomsForm.pristine | json }} </h3>
+<h3>Rooms invalid :{{roomsForm.invalid | json }} </h3>
+<h3>Rooms errors :{{roomsForm.errors | json }} </h3>
+<h3>Rooms value :{{roomsForm.value | json }} </h3>
+
+<h3 *ngIf="sucessMessage!==''" class="alert alert-successs">{{sucessMessage}}</h3>
+<form #roomsForm = "ngForm" (ngSubmit)="addRoom()">
+    <div class="form-group">
+        <input required type="text" [(ngModel)]="room.roomType" class="form-control" name="roomType" placeholder="Room Type" />
+    </div>
+    <div class="form-group">
+        <input #roomamenities="ngModel"  required minlength="5" maxlength="10" type="text" [(ngModel)]="room.amenities" class="form-control" name="amenities" placeholder="Ameneties"/>
+        <div class="alert alert-danger" *ngIf="roomamenities.errors?.['minlength']">
+            Ameneties should be minimum of 5 Charectors.
+            {{roomamenities.errors | json }}
+        </div>
+    </div>
+    <div class="form-group">
+        <input required type="number" [(ngModel)]="room.price" class="form-control" name="price" placeholder="Price"/>
+    </div>
+    <div class="form-group">
+        <input required type="text" [(ngModel)]="room.photos" class="form-control" name="photos" placeholder="Photos"/>
+    </div>
+    <div class="form-group">
+        <input required type="datetime" [(ngModel)]="room.checkinTime" class="form-control" name="checkinTime" placeholder="Check-in Time"/>
+    </div>
+    <div class="form-group">
+        <input required type="datetime" [(ngModel)]="room.checkoutTime" class="form-control" name="checkoutTime" placeholder="Check-out Time"/>
+    </div>
+    <div class="form-group">
+        <input required  min="1" max="5"  type="number" [(ngModel)]="room.rating" class="form-control" name="rating" placeholder="Rating"/>
+    </div>
+    <div>
+        <button [disabled]="roomsForm.invalid" class="btn btn-primary">Submit</button>
+    </div>
+</form>
