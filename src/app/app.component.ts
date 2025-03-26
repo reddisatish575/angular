@@ -18,7 +18,7 @@ constructor(@Inject(localStorageToken) private lst : any,
             @Inject(sessionStorageToken) private sst: any,
           @Inject(windowToken) private wt : any,
         private initService : InitService ){
-          console.log("uix initservice app ts :: ",initService.config);
+          // console.log("uix initservice app ts :: ",initService.config);
         }
 
   ngOnInit(): void {

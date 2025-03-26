@@ -18,12 +18,13 @@ export class RoomsListComponent implements OnInit, OnChanges,OnDestroy {
   ngOnInit(): void {
     // this.title = "rooms-list title ngon ";
     // console.log("uix ngoninit roomslist::::")
+    this.call();
 
   }
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
-    console.log("uix rooms-list ngOnDestroy called :::: ")
+    // console.log("uix rooms-list ngOnDestroy called :::: ")
   }
   ngOnChanges(changes: SimpleChanges): void {
     // this.title = "rooms-list title";
@@ -34,5 +35,8 @@ export class RoomsListComponent implements OnInit, OnChanges,OnDestroy {
   }
   selectRoom(room: RoomsList){
     this.selectedRoom.emit(room)
+  }
+  call(){
+    // console.log("uix call ::: ")
   }
 }

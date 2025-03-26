@@ -339,10 +339,27 @@
             -> used to create navigation component.
         -> dynamic route 
             -> room/:id is example of dynamic route.
+            -> [routerLink]="['/rooms',room.roomNumber]
+                -> / beofore the rooms will be append the /rooms to the localhost:8092,
+                -> while without / , the rout will be append to initial route like below 
+                    -> http://localhost:8092/rooms/rooms/2 , then page not found error will be occured.
         -> wild card route 
             -> { path : '**', component : NotfoundComponent }
             -> incase of page not found, we can use this wildcard route.
     -> Using ActivatedRoute service 
+        -> private router : ActivatedRoute
+        -> it allows you to read the router data.
+        -> allows access to snapshot params
+        -> allows to access data from route config.
+        -> this.router.params.subscribe((params) => {}), will listen to live changes and modify the data accordingly.
+            -> while we talking rxjs, we should not subscribe, because it will lead to the memory leakage.
+            -> we can avoid subscription by using rxjs operators. by using .pipe and map we can.
+                -> this.id$ = this.router.params.pipe(map(params => params['roomId']));
+        -> we can also use snapshot params 
+            -> let params = this.router.snapshot.params;
+                -> it doesn't listen to the live changes., so we can avoid this.
+        -> if we have multiple values , then there will problem with params. so we must use paramMap.
+            -> 
     -> Using Router service 
     -> Feature Module and Routing 
     -> Nested Routing and Child Routes 
