@@ -1,5 +1,5 @@
 -> ng new <projectname>
-    -> to generate angular project 
+    -> to generate angular project
 
 -> Workspace walkthrough
     1. tsconfig.json
@@ -15,11 +15,11 @@
     3. tsconfig.app.json
         -> used to compile all ts files other than spec files
     3. readme.md
-        -> description about your project 
+        -> description about your project
     4. package.json
         -> used to manage project dependencies
         -> dependencies
-            -> packages thar are needed to be in production build 
+            -> packages thar are needed to be in production build
         -> dev-dependencies
             -> packages thar are needed to be in development.
     5. package-lock.json
@@ -30,9 +30,9 @@
         -> karma is a task runner
         -> angular comes with default karma jasmine unit testing
         -> jasmine is used to write our test cases,karma is used to run these tests.
-    7. angular.json 
+    7. angular.json
         -> it will have information related to your workspace.
-        -> we can configure more than one projects in same angular.json file 
+        -> we can configure more than one projects in same angular.json file
     8. .gitignore
         -> we add the files that must not be checked in
     9. .editorconfig
@@ -40,7 +40,7 @@
     10. browserlistrc
         -> it shows all supported browsers of our project.
     11. test.ts
-        -> used by karma.conf.js file 
+        -> used by karma.conf.js file
         -> used to load the all spec files recursevly and give to the kar,a.conf.js
     12. styles.scss
         -> global css file
@@ -54,12 +54,12 @@
     -> create and maintain multiple apps in same repo
     -> use libraries within the project
     -> deploy multiple app/libs from same repo
-    -> easy to share the code within the project 
+    -> easy to share the code within the project
 -> app module is default root module
     -> @NgModule
         -> it gives what are the libraries, components are using to the compiler.
         -> Every module need to imported in imports array
-        -> every component, directive and pipes are need to delcare in 
+        -> every component, directive and pipes are need to delcare in
             the declarations array.
 -> Inrterpolation {{}}, property binding [], event binding ().
 -> Directives
@@ -74,19 +74,19 @@
         -> can't add/remove DOM elements
 -> Built-in Directives
     -> *ngIf, *ngFor, *ngSwitch, ngStyle, ngClass
--> pipes 
+-> pipes
     -> pipes are used to data transformation (changing).
     -> pipes dont' change the actual object, it changes view only
--> Built-in pipes   
+-> Built-in pipes
     -> Date, UpperCase, LowercAse, Cureency, Decimal, Percent, Json, Slice, Async
 -> constructor
     -> constructor will be called before ngOnInit.
     -> constructor is used to inject some services but should not have any blocking code..
     -> when component is instantiate , constructor will be called.
--> Lifecycle hgooks 
+-> Lifecycle hgooks
     -> component instance has a lifecycle hooks which can help you to hook into different events on components
-    -> lifecycle ends when component is destroyed 
--> we have 8 lifecycle hooks 
+    -> lifecycle ends when component is destroyed
+-> we have 8 lifecycle hooks
     1. ngOnChanges
         -> you cannot apply this hook only when your component have input and output property.
         -> it will called whenever event called in entire application irrespective of where it is implemented.
@@ -95,7 +95,7 @@
         -> Only works when we have input property
         -> try to avoid as much as possible
     2. ngOninit
-    3. ngDoCheck 
+    3. ngDoCheck
         -> never use docheck and ngOnChanges in same component, both do same thing
         -> it will called whenever event called in entire application irrespective of where it is implemented.
         -> when it is active, it will listen any event throughout your application.
@@ -117,15 +117,15 @@
         -> when it is active, it will listen any event throughout your application.
         -> before using this ngAfterContentChecked go through stackoverflow.
     6. ngAfterViewInit
-        -> scenario: you have component and you dont want to make it reusable, don't want to have   
+        -> scenario: you have component and you dont want to make it reusable, don't want to have
             input and output properties , sometimes you want to load them in another component and probably
             assigning some property and call some function or any third party component , we use @ViewChild.
         ->@ViewChild
             -> can access the Viewchild component after nt ngAfterViewInit not ngOninit.
             -> if we use {static:true}, then we can access the ViewChild component after ngOninit.
             -> when we use {static:true}, let's our headercompoent is instantiated in rooms component,
-                when instantiated the ngOninit lifecycle chook will be called in headercompoent and we try to getting the 
-                data in headercompoent without completing it's functions. So we may don't get the data in ngoninit of rooms 
+                when instantiated the ngOninit lifecycle chook will be called in headercompoent and we try to getting the
+                data in headercompoent without completing it's functions. So we may don't get the data in ngoninit of rooms
                 component. data issues will be raised.
             -> so we access the data after ngAfterViewInit, because the view of the component is ready.
         -> ExpressionChangedAfterItHasBeenCheckedError: Expression has changed after it was checked. Previous value: ''. Current value:
@@ -139,7 +139,7 @@
     8. ngOnDestroy
         -> whenever something is created , you need to destoryed.
         -> whenever the component is removed from the DOM, this hook will called.
-        -> it will be useful when we need to free the memory, unsubscribing the data,resets some data, 
+        -> it will be useful when we need to free the memory, unsubscribing the data,resets some data,
         if we need to clear the cache and loacalstorage ...
 -> component communication
     -> The scenario where two or more components needs to interact.
@@ -155,19 +155,19 @@
                 -> event binding syntax used `()`
         -> Using @ViewChil and @ContentChild
         -> Using services
--> Change Detection 
+-> Change Detection
     -> onPush
         -> when DOM is changing the Input property value must be immutable then only we can add elements
 -> ng-template
     -> it is a tag which never render anything, but it can help us to render other components.
     -> used to dynamically load the components.
     -> <ng-template #user></ng-template> , where user is template reference
-    ISSUE :: if we have inner viewchilds , in first time properties are not updating. 
+    ISSUE :: if we have inner viewchilds , in first time properties are not updating.
 -> element reference
     -> <div #name></div>
     -> by using this we can add out content to html element.
 -> @ViewChildren
-    -> In case of ViewChild, if we use multiple same header tags in rooms component, when we update the 
+    -> In case of ViewChild, if we use multiple same header tags in rooms component, when we update the
         headerTitle in header,only first instantiate will be updated, other will be with old headerTitle.
     -> instead of viewChild, viewChildren will be helpful.
     -> dirty means nothing has been changed.
@@ -178,26 +178,26 @@
     -> it's a design pattern
     -> angular has builtin dependency injection support.
     -> DI Providers
-        -> Class based providers 
+        -> Class based providers
             -> create and consuming services
                 -> ng g s <service-name>
-                -> all reusable code will be written in services    
-                -> bussiness logic will be written 
+                -> all reusable code will be written in services
+                -> bussiness logic will be written
                 -> sharing data between multiple components and within the app
             -> providers types
                 -> root
                     -> whenever we inject services, the angular needs to figure out where this service is provided.
                     -> In older angular < 6 , we used to register the services in providers arrat of the app-root module.
                         Now providedIn : root in the service makes it register in the app-root module.
-                    -> providedIn : root gives you single instance of the service 
+                    -> providedIn : root gives you single instance of the service
                     -> if we want different instance for different components, then we need to use providers : [RoomsService]
                         in @Component decorator
                     -> most of the cases , singletone instance is enough
-                    -> If we inject service in rooms component, then the algo checks the service provider is 
+                    -> If we inject service in rooms component, then the algo checks the service provider is
                         availabe in @Component decorator itslef, if not present then it will goes to parent and checks until it's app-root module.
                         if not finds any provider then goes to main.ts checks it is configured by platformmodule, if not finds then it throws
                         null injector error.
-                -> any 
+                -> any
                 -> platform
                     -> Internally used by router service
             -> Resolution modifiers
@@ -206,10 +206,10 @@
             -> skipSelf
                 -> @SkipSelf() is used to check the service is provided in further parents, if doesn't check on its component
             -> host
-                -> 
+                ->
             -> optional
         -> Value providers
-            -> we can pass an object as service 
+            -> we can pass an object as service
             -> make habit of declaring const as capital letter
             -> in case importing enviroment file wherver we need, we create service through injectiontoken and
                 create a value provider. we will register in app module.
@@ -230,8 +230,8 @@
         -> netflix, hotstar, amazon prime, youtube are straming services.
         -> if you want that stream , you must subscribe to it, similar concept is used in rxjs.
         -> we have two type of architectures
-            1. pull based architecture 
-                -> if we want add the newdata to the data, you need to get the data first 
+            1. pull based architecture
+                -> if we want add the newdata to the data, you need to get the data first
                     then you need to add the newdata and call the get data again to display.
                 -> getData ==> addDate ==> getData
             2. push based architecture
@@ -248,10 +248,10 @@
         -> request api is more powerful than http api. it has more features
     -> http methods
         -> get, post, put, delete
-    -> rxjs operators 
+    -> rxjs operators
         -> we have more than 100 operators.
-        -> why we need rxjs operators ? 
-            -> RxJs gives stream of data and that stream of data cannot be modified after subscribe. 
+        -> why we need rxjs operators ?
+            -> RxJs gives stream of data and that stream of data cannot be modified after subscribe.
             -> the stream can modify inside the `pipe` function.
         -> ShareReplay
             -> when api's called more than once in single component, we have performance issues. we will cache the request
@@ -259,7 +259,7 @@
             -> getRooms$ = this.http.get<RoomsList []>('/api/rooms').pipe(shareReplay(1));
                 -> getRoom$ is property
                 -> we will caching the every request of get api `/api/rooms/`.
-        -> Async pipe 
+        -> Async pipe
             -> when we subscribe many streams, we must unsubscribe the streams. if not performance issues will come.
             -> whenever ngOnDestroy calls, async pipe will aslo unsubscribing that object.
             -> async pipe can also return null.
@@ -270,30 +270,30 @@
         -> CatchError
             -> we can handle 404 exceptions by using async
             -> by using ngrx also we can handle.
-            -> we can't modify the data, after we subscribing, but we can do it by using pipe 
+            -> we can't modify the data, after we subscribing, but we can do it by using pipe
                 -> we can display the particular error message by using pipe operator.
-            -> we can also display the by using subject, it uses both Observable and observer 
+            -> we can also display the by using subject, it uses both Observable and observer
             -> subject is base class for different streams which we get. Internally angular also subject at lot of places.
                 -> error$ = new Subject<string>(); , used to create an subject.
                 -> getError$ = this.error$.asObservable(); , make it as active stream to listen the data.
                 -> error$.next(err), push the error to the stream.
                 -> Don't use this in component. do it in service. by using component interaction through services.
-        -> Map Operators 
+        -> Map Operators
             -> we can modify the stream by using the map operator by subscribing to the same stream.
 
 -> Http Interceptors and APP_INITIALIZERS
     -> Allow us to intercept request.
     -> we can change the data and headers
     -> APP_INITIALIZERS allows you to inject function as application startup.
-    -> when we add headers to every request, it's like duplicating code, so to resolve this issue, there is 
+    -> when we add headers to every request, it's like duplicating code, so to resolve this issue, there is
         concept called interceptors.
-    -> when we send request from client to server and get response from server, there is 
+    -> when we send request from client to server and get response from server, there is
         mediator , it will listen everything is called interceptor.
     -> we can common headers inside the interceptor, if we want to add date and timestamp to each and every request we can do that,
         we can handle the token expire case.
     -> to generate interceptor
         -> ng g interceptor <name>
-    -> http interceptor can modify our request and response both 
+    -> http interceptor can modify our request and response both
     -> this line send request to our server
         -> return next.handle(request);
     -> HTTP_INTERCEPTORS is injection token.
@@ -307,14 +307,14 @@
     -> APP_INITIALIZER can plugin our service and call that service, before our app is initialised.
         we can do anything whatever we want into that service, we can load the config file.
 
--> Angular Router 
+-> Angular Router
     -> Introdcution
         -> provides the functionality to add Routes.
-        -> developers can configure all the routes at front-end 
+        -> developers can configure all the routes at front-end
         -> provides SPA functionality
             -> you can navigate to any url but no need to send request to the server.
         -> Feature to add nested routes.
-    -> Setup Router 
+    -> Setup Router
         -> Import Routermodule
         -> forRoot method allows us to add multiple route config
             -> it it singleton instance , you should not forRoot multiple times.
@@ -324,29 +324,29 @@
         -> <router-outlet></router-outlet>
             -> it will give the content in that single commponent only.
             -> what ever the path matches, it loads that respective component.
-            -> 
-        -> default route 
+            ->
+        -> default route
             -> { path : '',redirectTo : '/rooms' , pathMatch : 'full' }
             -> we can also regexp in case of path.
         -> <a [href]="'rooms'">Rooms</a>
-            -> don't use href, because it loads the entire page. angular is SPA not MPA 
-            -> so use [routerLink] instaead of href 
+            -> don't use href, because it loads the entire page. angular is SPA not MPA
+            -> so use [routerLink] instaead of href
         -> <a [routerLink]="'rooms'">Rooms</a>
             -> it doesn't loads the entire page when routing.
         -> ng add @angular/material
             -> used to add angular material.
         -> ng generate @angular/material:navigation <component-name>
             -> used to create navigation component.
-        -> dynamic route 
+        -> dynamic route
             -> room/:id is example of dynamic route.
             -> [routerLink]="['/rooms',room.roomNumber]
                 -> / beofore the rooms will be append the /rooms to the localhost:8092,
-                -> while without / , the rout will be append to initial route like below 
+                -> while without / , the rout will be append to initial route like below
                     -> http://localhost:8092/rooms/rooms/2 , then page not found error will be occured.
-        -> wild card route 
+        -> wild card route
             -> { path : '**', component : NotfoundComponent }
             -> incase of page not found, we can use this wildcard route.
-    -> Using ActivatedRoute service 
+    -> Using ActivatedRoute service
         -> private router : ActivatedRoute
         -> it allows you to read the router data.
         -> allows access to snapshot params
@@ -355,29 +355,29 @@
             -> while we talking rxjs, we should not subscribe, because it will lead to the memory leakage.
             -> we can avoid subscription by using rxjs operators. by using .pipe and map we can.
                 -> this.id$ = this.router.params.pipe(map(params => params['roomId']));
-        -> we can also use snapshot params 
+        -> we can also use snapshot params
             -> let params = this.router.snapshot.params;
                 -> it doesn't listen to the live changes., so we can avoid this.
         -> if we have multiple values , then there will problem with params. so we must use paramMap.
             -> id$ = this.router.paramMap.pipe( map((params) => params.get('roomId')));
-    -> Using Router service 
-    -> Feature Module and Routing 
-    -> Nested Routing and Child Routes 
+    -> Using Router service
+    -> Feature Module and Routing
+    -> Nested Routing and Child Routes
     -> Lazy Loading
     -> Route Guards.
 
 -> we have two types of forms
-    -> Template driven forms 
+    -> Template driven forms
     -> reactive forms (more preferble)
 -> Template Driven Forms
     -> setting up template driven forms
-        -> Import FromsModule to module 
+        -> Import FromsModule to module
         -> In TDF, we can create forms using HTML tags.
         -> Good for dev's who likes to have more control using HTML.
         -> Use ngModel for 2 way data binding.
     -> validating forms
-        -> we can use HTML5 validation to validate forms 
-        -> use disabled property to avoid submitting the blank forms 
+        -> we can use HTML5 validation to validate forms
+        -> use disabled property to avoid submitting the blank forms
         -> use #templateVariable to access the state of Forms.
         -> if we want to get the status of the form , we need to get an instance of the form.
             -> #roomsForm = "ngForm" , by using this we can create & use an instance.
@@ -386,29 +386,44 @@
                     -> property will be true, if form has all required fields and no validation errors
                 -> invalid
                     -> opposite of valid property
-                -> dirty 
-                    -> 
+                -> dirty
+                    -> fresh state : false, else:true.
+                    -> at fresh state, it is true, when no one touches the form
+                    -> when you enter something ,then dirty becomes true.
+                    -> even if you clear the input , it still be true
                 -> pristine
-                    -> 
-                -> value  
-                    -> 
+                    -> fresh state : true, else : false
+                    -> it means fresh form, without even mouse click.
+                    -> after entering any letter, then pristine will be false even if you clear everything.
+                -> value
+                    ->
                 -> [disabled]   ----> used to disable the submit button
                 -> minlength and maxlength ---> string values
                 -> min and max property
                 -> email
                 -> pattern : we can provide regular experession
-        -> ** use validation both sides, frontend and backend, if someone hit the api through external 
+        -> ** use validation both sides, frontend and backend, if someone hit the api through external
             app, then backend code may be broken, so use both sides validations.
-    -> submit and reset froms 
+    -> submit and reset froms
+        -> use ngSubmit to submit the form
+        -> use reset method to reset the form.
+    -> custome directive eith forms
+        -> ng g d hover
+        -> change behaviour of DOM on hover
+        -> use hostlistner to listen to events
+        -> directives are similar to the component, but they don't have template
+            other than that we use anything , lifecycle hooks, methods, etc,.
+        -> if we want to listen the events and do DOM changes , we must use hostlistners
+
     -> custom pipe demo with forms
     -> writing a custom directive
     -> writing custom validator.
 
 
-    
 
-    
-   
+
+
+
 
 
 

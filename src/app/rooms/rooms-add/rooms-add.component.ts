@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RoomsList } from '../rooms';
 import { RoomsService } from 'src/app/services/rooms.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-rooms-add',
@@ -24,10 +25,11 @@ export class RoomsAddComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  addRoom(){
+  addRoom(roosForm : NgForm){
     this.roomsService.addRooms(this.room).subscribe((data) => {
       this.sucessMessage = "Room Add Successfully"
       console.log("uix data addRoom RoomsAddComponent ::: ",data);
+      roosForm.reset();
     })
   }
 

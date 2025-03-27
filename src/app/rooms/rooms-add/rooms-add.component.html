@@ -6,7 +6,7 @@
 <h3>Rooms value :{{roomsForm.value | json }} </h3>
 
 <h3 *ngIf="sucessMessage!==''" class="alert alert-successs">{{sucessMessage}}</h3>
-<form #roomsForm = "ngForm" (ngSubmit)="addRoom()">
+<form #roomsForm = "ngForm" (ngSubmit)="addRoom(roomsForm)">
     <div class="form-group">
         <input required type="text" [(ngModel)]="room.roomType" class="form-control" name="roomType" placeholder="Room Type" />
     </div>
