@@ -467,14 +467,36 @@
     -> when you do modifications in routes, you must restart the system.
     -> only one children will shown by roteroutlet.
 
-
-
-
-
-
-
-
-
+-> Lazy Loading
+  -> allows to split the code at module level
+  -> load code when user need it.
+  -> reduce main bundle size.
+  -> ng build -c=production will build the bundles used for deployement
+    -> it will minify the files
+    -> main.js will be served to our customers.
+    -> if we have huge enterprise application then the main.js file size will be increased.
+        loading time will be increased.
+    -> by using angular router, we can split the code based on the user viewed page
+    -> whenever you try to create a module as lazy loaded module, or trying to separate the code from
+        all entire application , we must think about the things which needs to be reusable, if it's
+        reusable, probably you have to rethink about our architecture. let's say there is one component that is
+        reusable from rooms , in that case we will remove that from the rooms component and we will put
+        it somewhere else where we will put reusables, so i can use inside the rooms and
+        other components as well.
+    -> lazy loaded modules should be isloated.
+    -> if we want to make rooms module as lazy loaded module,
+        -> remove the roomsmodule from declarations array of app.module
+        -> {path : 'rooms',loadChildren : () => import('./rooms/rooms.module').then((m) => m.RoomsModule),}
+        -> remove the 'rooms' path in rooms routing module.
+    -> lazy loaded modules will downloaded when we running the application.
+      -> we can check the download status in sources of inspect browser.
+    ->  ng g m booking --route=booking --routing --module=app
+      -> if it is lazy loaded from the day-1 then use --module=app flag.
+      -> used to create module and component at same time and registering that module in 'app,module.ts'
+    -> 1. ng g m search
+       2. ng g c search
+       -> these commands will create module first in the search folder, then creates component in same folder
+       -> it won't creates routing module.
 
 
 
