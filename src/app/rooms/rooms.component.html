@@ -6,11 +6,14 @@
 <div *ngIf="rooms$ | async as rooms " [ngStyle]="{'color': 'green'}">
     Number of Rooms:
 <!-- <div [innerText]="numberOfRooms"></div> -->
+<router-outlet></router-outlet>
+
 <app-rooms-list [rooms]="rooms " (selectedRoom)="fetchSelectedRoom($event)" [title]="'Rooms Title'"></app-rooms-list>
 </div>
 <!-- <button (click)="toggle()">{{showRooms}}</button> -->
 <!-- <div>{{selectedRoom | json }}</div> -->
-<div><button (click)="addRoom()">Add Room</button></div>
+<!-- <div><button (click)="addRoom()">Add Room</button></div> -->
+<div><button routerLink="add">Add Room</button></div>
 <!-- <div>{{getError$ | async | json }}</div> -->
 <!-- <h2>{{roomsCount$| async }}</h2> -->
 <!-- <div *ngIf="roomsss.availableRooms>0">Rooms List -->

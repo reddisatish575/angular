@@ -454,6 +454,21 @@
   -> imports in module will be also go sequentially top to bottom
   -> we always import feature module before the app routing module.
 
+-> Nested Routes and Child Routes
+  -> using child routes we can do nested routing.
+  -> allows to load child routes.
+  -> when we click on the book room, the view of Rooms will lost, if we want
+    the view of the bookroom below the room, then we will use
+    -> children : [{ path : ':roomId', component : RoomsBookingComponent }]
+      -> in children attribute of rooms , add like above and remove 'rooms/' beofre the 'roomsId'
+    -> implement router outlet in the rooms.component.html and it will loaded wherever you keep the
+      router outlet in html.
+    ->  wildcard dynamic routes should be added to end of the routes or childrens array.
+    -> when you do modifications in routes, you must restart the system.
+    -> only one children will shown by roteroutlet.
+
+
+
 
 
 
