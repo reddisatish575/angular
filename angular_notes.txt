@@ -514,6 +514,7 @@
         -> 1. canActivate
             -> canActivate guard checks whether the current user has permission to activate the requested route.
         -> 2. canActivateChild
+            -> checks whether the current user has permission to activate the requested child route.
         -> 3. canDeactivate
         -> 4. canLoad
         -> 5. Resolve
