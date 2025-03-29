@@ -498,8 +498,11 @@
        -> these commands will create module first in the search folder, then creates component in same folder
        -> it won't creates routing module.
 
-
-
+-> provider types
+  -> root
+  -> any
+    -> for root component it will create an instance, for lazy loaded modules it
+        will create another instance .
 
 
 

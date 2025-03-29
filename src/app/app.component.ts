@@ -4,20 +4,23 @@ import { localStorageToken } from './Token/localstorage.token';
 import { sessionStorageToken } from './Token/sessionstorage.token';
 import { windowToken } from './Token/window.token';
 import { InitService } from './services/init.service';
+import { ConfigService } from './services/config.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit{
-  
+
   title = 'hotelinventoryapp';
   roleType = "Admin";
 
 constructor(@Inject(localStorageToken) private lst : any,
             @Inject(sessionStorageToken) private sst: any,
           @Inject(windowToken) private wt : any,
-        private initService : InitService ){
+        private initService : InitService,
+        // private config : ConfigService
+      ){
           // console.log("uix initservice app ts :: ",initService.config);
         }
 

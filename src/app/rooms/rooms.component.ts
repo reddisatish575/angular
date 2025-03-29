@@ -3,6 +3,7 @@ import { Room, RoomsList } from './rooms';
 import { HeaderComponent } from '../header/header.component';
 import { RoomsService } from '../services/rooms.service';
 import { catchError, map, Observable, of, Subject, Subscription } from 'rxjs';
+import { ConfigService } from '../services/config.service';
 
 @Component({
   selector: 'app-rooms',
@@ -31,7 +32,7 @@ export class RoomsComponent implements OnInit , DoCheck, AfterViewInit, AfterVie
     observer.complete();
     // observer.error('error')
   });
-  
+
   // @ViewChild(HeaderComponent) headerComp! : HeaderComponent ;
   @ViewChildren(HeaderComponent) headerChildrenComponent!: QueryList<HeaderComponent>;
 
@@ -54,7 +55,7 @@ export class RoomsComponent implements OnInit , DoCheck, AfterViewInit, AfterVie
 
 
 
-  constructor(private roomsService : RoomsService) { }
+  constructor(private roomsService : RoomsService, /* private config : ConfigService */) { }
   ngOnInit(): void {
 
     this.roomsService.getPhotos().subscribe((data) => {
@@ -78,7 +79,7 @@ export class RoomsComponent implements OnInit , DoCheck, AfterViewInit, AfterVie
 
     // console.log("uix rooms ngOninit headerComp ::: ",this.headerComp);
   }
- 
+
 ngOnDestroy(): void {
   //Called once, before the instance is destroyed.
   //Add 'implements OnDestroy' to the class.
@@ -95,7 +96,7 @@ ngOnDestroy(): void {
   //   //Add '${implements OnChanges}' to the class.
 
   //   console.log("uix rooms SimpleChanges :: ",changes);
-    
+
   // }
 
   ngAfterViewInit(): void {
@@ -104,7 +105,7 @@ ngOnDestroy(): void {
     // console.log("uix rooms ngafterviewinit headerChildrenComponent ::: ",this.headerChildrenComponent);
 
     this.headerChildrenComponent.first.headerTitle = "First HEader";
-    this.headerChildrenComponent.forEach((cmp) => 
+    this.headerChildrenComponent.forEach((cmp) =>
       cmp.headerTitle = "Titleeeee"
     )
     this.headerChildrenComponent.last.headerTitle = "Last HEader";
