@@ -308,6 +308,7 @@
         we can do anything whatever we want into that service, we can load the config file.
 
 -> Angular Router
+    BASIC
     -> Introdcution
         -> provides the functionality to add Routes.
         -> developers can configure all the routes at front-end
@@ -360,7 +361,9 @@
                 -> it doesn't listen to the live changes., so we can avoid this.
         -> if we have multiple values , then there will problem with params. so we must use paramMap.
             -> id$ = this.router.paramMap.pipe( map((params) => params.get('roomId')));
+    ADVANCED
     -> Using Router service
+      ->
     -> Feature Module and Routing
     -> Nested Routing and Child Routes
     -> Lazy Loading
@@ -418,6 +421,39 @@
       -> write custom validation for template driven forms
       -> add logic to validate the form field.
     -> writing custom validator.
+      -> emailvalidator
+
+-> Router Service
+  -> access the router events.
+  -> navigate using router service.
+    -> this.route.navigate(['/rooms','add']);
+      -> it will append both '/rooms' and 'add', then redirect to that page.
+    -> this.route.navigateByUrl('/rooms/add');
+      -> it will redirect to the mentioned path.
+-> Feature Module and Routing
+  -> creating Feature Module
+    -> ar some point of time, app-routing.module will become huge code base and will be difficult to
+        manage the routing.so we use feature module.
+    -> it wraps entire things together if they are related.
+    -> to achieve lazy laoding is easy by using feature module.
+    -> if we have huge application, try to use feature module instead of registering everything into app module.
+  -> Configure routing at feature model level
+  -> forChild used to configure the routes.
+  -> ng g m rooms --routing --flat=true --force
+    -> it will create rooms module and rooms routing module
+  -> ng g m rooms --flat=true
+    -> it will create rooms module without routing module
+  -> move entire rooms declarations from app.module to rooms.module
+  -> middleware error may be raised, so you need to restart.
+  -> ** component will be registered in one module only.
+  -> we can import the module in multiple modules, but we can delcare the component in one single module.
+  -> if we want to use the headercompoent in rooms component ie., outside the header, then
+    you need to add in the exports array.
+      ->   exports : [HeaderComponent]
+  -> routes in routing module will go sequentially top to bottom.
+  -> imports in module will be also go sequentially top to bottom
+  -> we always import feature module before the app routing module.
+
 
 
 
