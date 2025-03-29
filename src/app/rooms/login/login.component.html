@@ -1,6 +1,10 @@
 <form>
     <div class="form-group">
-        <input appHover required type="email" [(ngModel)]="email" class="form-control" name="price" placeholder="Email"/>
+        <!-- <input appHover required type="email" [(ngModel)]="email" class="form-control" name="price" placeholder="Email"/> -->
+        <input #em="ngModel" appEmailvalidator required type="email" [(ngModel)]="email" class="form-control" name="price" placeholder="Email"/>
+        <div>
+          {{em.errors | json }}
+        </div>
     </div>
     <div class="form-group">
         <input appHover required type="password" [(ngModel)]="password" class="form-control" name="price" placeholder="Password"/>

@@ -407,16 +407,16 @@
     -> submit and reset froms
         -> use ngSubmit to submit the form
         -> use reset method to reset the form.
-    -> custome directive eith forms
+    -> custome directive with forms
         -> ng g d hover
         -> change behaviour of DOM on hover
         -> use hostlistner to listen to events
         -> directives are similar to the component, but they don't have template
             other than that we use anything , lifecycle hooks, methods, etc,.
         -> if we want to listen the events and do DOM changes , we must use hostlistners
-
-    -> custom pipe demo with forms
     -> writing a custom directive
+      -> write custom validation for template driven forms
+      -> add logic to validate the form field.
     -> writing custom validator.
 
 
