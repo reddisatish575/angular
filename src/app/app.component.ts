@@ -5,6 +5,8 @@ import { sessionStorageToken } from './Token/sessionstorage.token';
 import { windowToken } from './Token/window.token';
 import { InitService } from './services/init.service';
 import { ConfigService } from './services/config.service';
+import { NavigationEnd, NavigationStart, Router } from '@angular/router';
+import { filter } from 'rxjs';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -17,17 +19,34 @@ export class AppComponent implements OnInit{
 
 constructor(@Inject(localStorageToken) private lst : any,
             @Inject(sessionStorageToken) private sst: any,
-          @Inject(windowToken) private wt : any,
-        private initService : InitService,
-        // private config : ConfigService
+            @Inject(windowToken) private wt : any,
+            private initService : InitService,
+            // private config : ConfigService,
+            private router : Router,
       ){
           // console.log("uix initservice app ts :: ",initService.config);
         }
 
   ngOnInit(): void {
+    // this.router.events.subscribe((event) => {
+    //   console.log("uix event AppComponent ::: ",event);
+    // })
     this.lst.setItem("name","Satish");
     this.sst.setItem("timeOut",40);
     // console.log("uix window :::",this.wt);
+
+    this.router.events.pipe(
+      filter((event) => event instanceof NavigationStart)
+    ).subscribe((event) => {
+      console.log("uix Navigation Started ::: ");
+    });
+
+    this.router.events.pipe(
+      filter((event) => event instanceof NavigationEnd)
+    ).subscribe((event) => {
+      console.log("uix Navigation Ended ::: ");
+    });
+
   }
 
 

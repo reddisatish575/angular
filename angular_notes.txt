@@ -506,6 +506,17 @@
             will create another instance .
 
 
+-> Route Guards
+    -> Guards will secure our route.
+    -> router service has some default events.
+    -> NavigationStart,RoutesRecognized,GuardsCheckStart,scroll,etc,.
+    -> we have multiple Guards
+        -> 1. canActivate
+            -> canActivate guard checks whether the current user has permission to activate the requested route.
+        -> 2. canActivateChild
+        -> 3. canDeactivate
+        -> 4. canLoad
+        -> 5. Resolve
 
 
 
