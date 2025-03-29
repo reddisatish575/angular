@@ -510,6 +510,7 @@
     -> Guards will secure our route.
     -> router service has some default events.
     -> NavigationStart,RoutesRecognized,GuardsCheckStart,scroll,etc,.
+    -> we can apply multiple guards for single route.
     -> we have multiple Guards
         -> 1. canActivate
             -> canActivate guard checks whether the current user has permission to activate the requested route.
@@ -517,6 +518,11 @@
             -> checks whether the current user has permission to activate the requested child route.
         -> 3. canDeactivate
         -> 4. canLoad
+            -> when we have rooms compoenent, even though it is lazy loaded, when we
+              click on the rooms compoenent, it will loaded the bundles in the sources.
+              But we still doesn't rendering the rooms component. In this case we use
+              canLoad Guard.
+            -> we will restrict the loading the lazy loading component bundles.
         -> 5. Resolve
 
 
