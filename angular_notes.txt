@@ -519,6 +519,12 @@
         -> 2. canActivateChild
             -> checks whether the current user has permission to activate the requested child route.
         -> 3. canDeactivate
+            -> it checks whether the user is authorized to exit the route .
+            -> example, you fill up the forms and you are trying to redirect into
+                another page, but you must user whether to stay or redirect, in those cases
+                this guard will be helpful.
+            -> when form is in dirty state, we must show some messages when user try to exit.
+
         -> 4. canLoad
             -> when we have rooms compoenent, even though it is lazy loaded, when we
               click on the rooms compoenent, it will loaded the bundles in the sources.
@@ -578,8 +584,24 @@
         -> valuechanges event calls for each keypress.
         -> when we have custom validation, we need to check for every keypress .
         -> it may give you cost performance issues when we have more controls.
-    -> Using RxJs map operators
-    -> Implementing Custom validation
+    -> Using RxJs map operators (skipped)
+        -> Using mergeMap operator
+            -> it loads requests with merging.
+        -> Using switchMap operator
+            -> this operator will cancelled the previous calling pending api's and
+                try to send the latest data .
+        -> Using exhaustMap operator
+            -> it will not subscribe to the any data until it completes it previous requests
+            -> if follow one by one
+
+    -> Implementing Custom validation (skipped)
+    -> canDeactivate Guard (skipped)
+    -> Form control with a custom pipe  (skipped)
+    -> Resolve guard  (skipped)
+    -> Glaobal Error Handling (skipped)
+    -> Testing  (skipped)
+    -> Test a Service  (skipped)
+    -> Application deployement
 
 
 
