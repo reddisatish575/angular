@@ -555,6 +555,17 @@
             -> this.appendGuest.removeAt(i);
         -> try to avoid code duplications, use user defined methods & place your code.
     -> Built-in validations
+        -> Use validator class to access buil-in validation
+        -> min
+        -> max
+        -> required
+        -> requiredTrue
+            -> used in case of checkboxes.
+            -> Validator that requires the control's value be true. This validator is commonly used for required checkboxes.
+        -> email
+        -> minLength(number)
+        -> maxLength(number)
+        -> pattern
     -> Listening to Form value changes using valueChanges
     -> patchValue vs setValue
     -> Using RxJs map operators

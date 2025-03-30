@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-booking',
@@ -19,25 +19,27 @@ export class BookingComponent implements OnInit {
 
   ngOnInit(): void {
     this.bookingForm = this.fb.group({
-      roomId: new FormControl({value : '2',disabled : true}),
-      guestEmail: new FormControl(''),
-      checkinDate: new FormControl(''),
-      checkoutDate: new FormControl(''),
-      bookingStatus: new FormControl(''),
-      bookingAmount: new FormControl(''),
-      bookingDate: new FormControl(''),
-      mobileNumber: new FormControl(''),
-      guestName: new FormControl(''),
+      roomId: new FormControl({value : '2',disabled : true},{validators : [Validators.required]}),
+      guestEmail: ['',[Validators.required, Validators.email]],
+      checkinDate: [''],
+      checkoutDate: [''],
+      bookingStatus: [''],
+      bookingAmount: [''],
+      bookingDate: [''],
+      mobileNumber: [''],
+      guestName: ['', [Validators.required, Validators.minLength(5)]],
       address : this.fb.group({
-        AddressLine1: new FormControl(''),
-        AddressLine2: new FormControl(''),
-        City: new FormControl(''),
-        State: new FormControl(''),
-        Country: new FormControl(''),
-        ZipCode: new FormControl(''),
+        AddressLine1: [''],
+        AddressLine2: [''],
+        City: [''],
+        State: [''],
+        Country: [''],
+        ZipCode: [''],
       }),
-      guests : this.fb.array([this.addGuestControl()])
+      guests : this.fb.array([this.addGuestControl()]),
+      tnc : new FormControl(false, {validators : [Validators.requiredTrue]})
     });
+
   }
 
   addBooking(){

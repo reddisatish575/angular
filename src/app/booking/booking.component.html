@@ -127,7 +127,10 @@
   </div>
 
   <div>
-    <button mat-raised-button color="primary">Submit</button>
+    <mat-checkbox class="example-margin" formControlName="tnc">Tems & Conditions</mat-checkbox>
+  </div>
+  <div>
+    <button [disabled]="bookingForm.invalid" mat-raised-button color="primary">Submit</button>
   </div>
 
 </form>
