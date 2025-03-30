@@ -20,13 +20,27 @@ export class BookingComponent implements OnInit {
   ngOnInit(): void {
     this.bookingForm = this.fb.group({
       roomId: new FormControl({value : '2',disabled : true},{validators : [Validators.required]}),
-      guestEmail: ['',[Validators.required, Validators.email]],
+      // guestEmail: [
+      //   '',[Validators.required, Validators.email]
+      // ],
+      guestEmail: [
+          '',
+          {
+            updateOn : 'blur',
+            validators : [Validators.required, Validators.email],
+          }
+        ],
       checkinDate: [''],
       checkoutDate: [''],
       bookingStatus: [''],
       bookingAmount: [''],
       bookingDate: [''],
-      mobileNumber: [''],
+      mobileNumber:  [
+        '',
+        {
+          updateOn : 'blur',
+        }
+      ],
       guestName: ['', [Validators.required, Validators.minLength(5)]],
       address : this.fb.group({
         AddressLine1: ['',[Validators.required]],
@@ -38,8 +52,38 @@ export class BookingComponent implements OnInit {
       }),
       guests : this.fb.array([this.addGuestControl()]),
       tnc : new FormControl(false, {validators : [Validators.requiredTrue]})
+    },
+    {
+      updateOn : 'blur',
     });
+    this.setBookingDetails();
+    this.bookingForm.valueChanges.subscribe((data) => {
+      console.log("uix valueChanges data ::: ",data);
+    })
+  }
 
+  setBookingDetails(){
+    this.bookingForm.patchValue({
+      roomId: '2',
+      guestEmail: 'test@gmail.com',
+      checkinDate: '',
+      checkoutDate: '',
+      bookingStatus: '',
+      bookingAmount: '',
+      bookingDate: '',
+      mobileNumber: '',
+      guestName: 'sjknru',
+      address : {
+        AddressLine1: '',
+        AddressLine2: '',
+        City: '',
+        State: '',
+        Country: '',
+        ZipCode: '',
+      },
+      guests : [],
+      tnc : ''
+    })
   }
 
   addBooking(){

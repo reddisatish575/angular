@@ -568,8 +568,16 @@
         -> minLength(number)
         -> maxLength(number)
         -> pattern
-    -> Listening to Form value changes using valueChanges
     -> patchValue vs setValue
+        -> while binding data we can use setValue or patchValue
+        -> while using setValue we need to pass all properties in form
+        -> patchValue allows to skip the values for form controls.
+    -> Listening to Form value changes using valueChanges
+        -> valueChanges event allows to listen all value changes
+        -> useful to capture changes happening in real-time
+        -> valuechanges event calls for each keypress.
+        -> when we have custom validation, we need to check for every keypress .
+        -> it may give you cost performance issues when we have more controls.
     -> Using RxJs map operators
     -> Implementing Custom validation
 
