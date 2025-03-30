@@ -525,6 +525,41 @@
             -> we will restrict the loading the lazy loading component bundles.
         -> 5. Resolve
 
+-> Reactive Forms
+    -> Setting Up Reactive forms
+        -> Import ReactiveFormsModule to module.
+        -> In Reactive forms we create forms using typescript
+        -> Good for developers who likes to have more control in TS file
+        -> it uses forms API like FormGroup, FormControl.
+    -> Creating Form
+        -> Use FormControl class to create form controls
+        -> use FormGroup to group multiple controls
+        -> use FormBuilder to build complex forms
+    -> Submit and Reset Forms
+        -> use ngSubmit to submit the form
+        -> use reset method to reset the form
+        -> when you use new FormControl({value : '2',disabled : true}) , rather than using .value use
+            .getRawValue() to get the all the values.
+        -> .value, doesn't get the disabled values.
+        -> if we have two buttons, we must define the type of button in form, otherwise
+            it will submit the data when you click either of the buttons
+    -> nested forms
+        -> we will use formGroupName attribute to nest the form.
+        -> formGroupName should be unique
+    -> Adding Controls dynamically
+        -> Using addControl to add control
+            -> this.bookingForm.addControl('passport', new FormControl(''));
+        -> using removeControl to remove control
+            -> this.bookingForm.removeControl('passport');
+        -> if we have multiple dynamic same controls then we must delete by using index.
+            -> this.appendGuest.removeAt(i);
+        -> try to avoid code duplications, use user defined methods & place your code.
+    -> Built-in validations
+    -> Listening to Form value changes using valueChanges
+    -> patchValue vs setValue
+    -> Using RxJs map operators
+    -> Implementing Custom validation
+
 
 
 

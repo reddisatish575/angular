@@ -8,7 +8,7 @@ import { LoginGuard } from './guards/login.guard';
 const routes: Routes = [
   { path : 'employee',
     component : EmployeeComponent,
-    canActivate : [LoginGuard]
+    // canActivate : [LoginGuard]
   },
   { path : 'login',
     component : LoginComponent
@@ -16,11 +16,13 @@ const routes: Routes = [
   {
     path : 'rooms',
     loadChildren : () => import('./rooms/rooms.module').then((m) => m.RoomsModule),
-    canActivate : [LoginGuard],
-    canLoad : [LoginGuard]
+    // canActivate : [LoginGuard],
+    // canLoad : [LoginGuard]
   },
   { path : '',redirectTo : '/rooms' , pathMatch : 'full' },
-  { path: 'booking', loadChildren: () => import('./booking/booking.module').then(m => m.BookingModule),canActivate : [LoginGuard]},
+  { path: 'booking', loadChildren: () => import('./booking/booking.module').then(m => m.BookingModule)
+    // ,canActivate : [LoginGuard]
+  },
   { path : '**', component : NotfoundComponent }
 ];
 
