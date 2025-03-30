@@ -419,6 +419,8 @@
         -> if we want to listen the events and do DOM changes , we must use hostlistners
     -> writing a custom directive
         -> write custom validation for template driven forms
+            -> <mat-error *ngIf="bookingForm.get(['guests',i,'guestName'])?.hasError('required')">
+                -> first one is formArrayName, second one is formGroupName and third one is controlName.
         -> add logic to validate the form field.
     -> writing custom validator.
         -> emailvalidator

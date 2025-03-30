@@ -29,7 +29,7 @@ export class BookingComponent implements OnInit {
       mobileNumber: [''],
       guestName: ['', [Validators.required, Validators.minLength(5)]],
       address : this.fb.group({
-        AddressLine1: [''],
+        AddressLine1: ['',[Validators.required]],
         AddressLine2: [''],
         City: [''],
         State: [''],
@@ -45,6 +45,28 @@ export class BookingComponent implements OnInit {
   addBooking(){
     console.log("uix booking form values ::: ",this.bookingForm.value);
     console.log("uix booking form raw value ::: ",this.bookingForm.getRawValue());
+    this.bookingForm.reset({
+      roomId: '2',
+      guestEmail: '',
+      checkinDate: '',
+      checkoutDate: '',
+      bookingStatus: '',
+      bookingAmount: '',
+      bookingDate: '',
+      mobileNumber: '',
+      guestName: '',
+      address : {
+        AddressLine1: '',
+        AddressLine2: '',
+        City: '',
+        State: '',
+        Country: '',
+        ZipCode: '',
+      },
+      guests : '',
+      tnc : ''
+
+    });
   }
 
   addGuest(){
@@ -55,7 +77,7 @@ export class BookingComponent implements OnInit {
 
   addGuestControl(){
     return this.fb.group({
-      guestName : [''],
+      guestName : ['',[Validators.required]],
       age : new FormControl('')
     })
   }
